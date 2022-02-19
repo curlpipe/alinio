@@ -162,7 +162,7 @@ impl Table {
                 pri.remove(rm);
             }
             // Decrement counters
-            pad_places -= 1;
+            pad_places = pad_places.saturating_sub(1);
             column_count = column_count.saturating_sub(1);
         }
         // Correctly align each item within said columns and format them

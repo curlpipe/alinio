@@ -286,7 +286,13 @@ mod tests {
             table.render(),
             Some(vec!["          ".to_string(), "          ".to_string()]),
         );
+        table.set_surround(false);
+        assert_eq!(
+            table.render(),
+            Some(vec!["          ".to_string(), "          ".to_string()]),
+        );
         // Test column collapsing
+        table.set_surround(true);
         table.set_priorities(&[2, 0, 1]);
         table.set_space(25);
         assert_eq!(
