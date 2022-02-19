@@ -2,6 +2,12 @@
 name = "alinio"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "A library to assist in alignment and table generation in TUI applications"
+repository = "https://github.com/curlpipe/alinio"
+readme = "README.md"
+keywords = ["tui", "terminal", "alignment", "tables", "unicode"]
+categories = ["command-line-interface"]
 
 [dependencies]
 unicode-width = "0.1.9"
