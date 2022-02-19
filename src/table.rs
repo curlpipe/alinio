@@ -133,7 +133,7 @@ impl Table {
             return Some(vec![]);
         }
         // Create copy of data
-        let mut data: Data = self.data.clone().into_iter().skip(offset).collect();
+        let mut data = self.data.clone();
         // Reform into columns
         let mut columns = vec![];
         for column in 0..data[0].len() {
@@ -162,7 +162,7 @@ impl Table {
             let rm = pri.iter().min().unwrap_or(&0);
             let rm = pri.iter().position(|x| x == rm).unwrap_or(column_count);
             // Remove from data
-            for row in &mut data {
+            for row in data.iter_mut().skip(offset) {
                 row.remove(rm);
             }
             // Remove from limits
@@ -177,7 +177,7 @@ impl Table {
         }
         // Correctly align each item within said columns and format them
         let mut result = vec![];
-        for row in data.iter() {
+        for row in data.iter().skip(offset) {
             let mut this = vec![];
             for (column, limit) in row.iter().zip(&limits) {
                 // Align cell

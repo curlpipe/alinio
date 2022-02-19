@@ -356,17 +356,29 @@ mod tests {
         );
         assert_eq!(
             table.render_partial(1).unwrap(),
+            vec!["Once in a Lifetime   Talking Heads  1981".to_string()]
+        );
+        assert_eq!(table.render_partial(2), Some(vec![]));
+        assert_eq!(table.render_partial(3), Some(vec![]));
+        // Test context awareness
+        let table = Table::new(
             vec![
-                "Once in a Lifetime   Talking Heads  1981".to_string()
-            ]
+                vec![
+                    "Once in a Lifetime".to_string(),
+                    "Talking Heads".to_string(),
+                    "1981".to_string(),
+                ],
+                vec![
+                    "Title".to_string(),
+                    "Artist".to_string(),
+                    "Year".to_string(),
+                ],
+            ],
+            40,
         );
         assert_eq!(
-            table.render_partial(2),
-            Some(vec![])
-        );
-        assert_eq!(
-            table.render_partial(3),
-            Some(vec![])
+            table.render_partial(1).unwrap(),
+            vec!["Title                Artist         Year".to_string(),]
         );
     }
 }

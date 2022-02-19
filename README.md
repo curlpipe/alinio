@@ -15,6 +15,8 @@ I've made sure to properly document this library, but please let me know if you 
 
 ## Release History
 
+* 0.2.1
+    * Made table rendering context aware, so that whitespace and columns don't weirdly change when scrolling
 * 0.2.0
     * Added `partial_render` function to allow for rendering only part of the table
 * 0.1.1
