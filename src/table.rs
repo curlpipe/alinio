@@ -116,14 +116,24 @@ impl Table {
     }
 
     /// Render this table to rows of strings.
+    ///
     /// This will return `None` if there is not enough space to fit the table.
     pub fn render(&self) -> Option<Vec<String>> {
+        self.render_partial(0)
+    }
+
+    /// Only renders rows after `offset` row. This is particularly useful if you have a table
+    /// that you wish to fit into a terminal with a height shorter than the table.
+    ///
+    /// This will return `None` if there is not enough space to fit the table, or if the offset is
+    /// out of bounds
+    pub fn render_partial(&self, offset: usize) -> Option<Vec<String>> {
         // Return nothing if there is no data
-        if self.data.is_empty() {
+        if self.data.len().saturating_sub(offset) == 0 {
             return Some(vec![]);
         }
         // Create copy of data
-        let mut data = self.data.clone();
+        let mut data: Data = self.data.clone().into_iter().skip(offset).collect();
         // Reform into columns
         let mut columns = vec![];
         for column in 0..data[0].len() {

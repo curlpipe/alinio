@@ -15,6 +15,10 @@ I've made sure to properly document this library, but please let me know if you 
 
 ## Release History
 
+* 0.2.0
+    * Added `partial_render` function to allow for rendering only part of the table
+* 0.1.1
+    * Fixed panic when there is not enough space to render the table when surround is `false`
 * 0.1.0
     * Inital release
 
