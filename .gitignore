@@ -2,3 +2,4 @@
 Cargo.lock
 example/target
 tarpaulin-report.html
+src/*.swp
